@@ -1,35 +1,38 @@
-
 public class AnonymousInnerClass {
-	int v = 10;
-	static int vs = 100;
+
+	int v1 = 10;//Global Var
+	static int vs = 100;//Static Var
 
 	public void myMethod() {
-		int g = 9;// you can't define local static variable
-		A a = new A() {// anonymous inner Class
+		int v2 = 9;// you can't define local static variable
+		interfaceA obja = new interfaceA() {// anonymous inner Class
 
 			@Override
-			public void fuc() {
-				System.out.println("anonymous inner Class" + v + vs + g);
+			public void methodA() {
+				System.out.print("anonymous inner Class");
 				// local variable only Use you can't change it
+				System.out.printf(" access to Global variable %d and Static Variable %d and local %d", v1, vs, v2);
 			}
 		};
-		a.fuc();
+		obja.methodA();
 	}
 
 	public static void main(String[] args) {
-		A a = new A() {// anonymous static inner Class
-            int y =99;// you can't define local static variable
+		interfaceA obja = new interfaceA() {// anonymous static inner Class
+			int v3 = 99;// you can't define local static variable
 			@Override
-			public void fuc() {
-				System.out.println("anonymous static inner Class" + vs + y);
-
+			public void methodA() {
+				System.out.print("anonymous static inner Class");
+				System.out.printf(" access to Static Variable %d and local %d \n", vs, v3);
 			}
 		};
-		a.fuc();
+		obja.methodA();
+		AnonymousInnerClass aic = new AnonymousInnerClass();
+		aic.myMethod();
 	}
 }
 
-interface A {
-	void fuc();
+interface interfaceA {
+	void methodA();
 }
 
